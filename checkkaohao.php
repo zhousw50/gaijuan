@@ -27,17 +27,41 @@ function checkphoto($path, $startx, $starty, $stopx, $stopy) {
 }
 function checkkaohao($photo,$json) {
     $config=json_decode($json);
+    $kaohao="";
+    $a=array();
+    //var_dump($config);
+    //*
+    for($i=1;$i<=$config->numberOfColumns;$i++)
+    {
+        $c=$config->$i;
+        for($j=0;$j<10;$j++)
+        {
+            $zuobiao=$c[$j];
+            var_dump($c);
+            echo "<br>";
+            $a[$i][$j]=checkphoto($photo,$zuobiao["startx"],$zuobiao["starty"],$zuobiao["stopx"],$zuobiao["stopy"]);
+
+        }
+    }
+    var_dump($a);
+    $max=0;
+    $max_index=0;
     for($i=1;$i<=$config["numberOfColumns"];$i++)
     {
         for($j=0;$j<10;$j++)
         {
-            
+            if($a[$i][$j]>$max){
+                $max=$a[$i][$j];
+                $max_index=$j;
+            }
+            $kaohao+=$max_index;
         }
     }
-	return $kaohao;
+	return settype($kaohao,"integer");//*/
 }
-$json='"numberOfColumns":5,
-"1":[{
+$json='{
+            "numberOfColumns":5,
+            "1":[{
 				"0":[{
 					"startx":2426,
 					"starty":880,
@@ -346,6 +370,6 @@ $json='"numberOfColumns":5,
 					"stopx":2526,
 					"stopy":980
 				}]
-			}]';
-echo checkkaohao("1.jpeg",$json);
+			}]}';
+echo checkkaohao("http://g.zhousw.top/photo.php?photo=addexam/a.jpeg&x1=0&y1=0&x2=2778&y2=4025",$json);
 ?>
