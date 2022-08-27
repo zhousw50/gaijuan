@@ -1,4 +1,5 @@
 <?php
+/*
 function checkphoto($path, $startx, $starty, $stopx, $stopy) {
     $sums = 0;
     $img = imagecreatefromjpeg($path);
@@ -25,15 +26,12 @@ function checkphoto($path, $startx, $starty, $stopx, $stopy) {
     imagedestroy($img1);
     return floor($sums / (($stopx - $startx) * ($stopy - $starty)) * 100);
 }
-function checkkaohao($photo,$json) {
-    $config=json_decode($json);
+function checkkaohao($photo,$arr) {
     $kaohao="";
     $a=array();
-    //var_dump($config);
-    //*
-    for($i=1;$i<=$config->numberOfColumns;$i++)
+    for($i=1;$i<=$arr["numberOfColumns"];$i++)
     {
-        $c=$config->$i;
+        $c=$arr[$i];
         for($j=0;$j<10;$j++)
         {
             $zuobiao=$c[$j];
@@ -46,7 +44,7 @@ function checkkaohao($photo,$json) {
     var_dump($a);
     $max=0;
     $max_index=0;
-    for($i=1;$i<=$config["numberOfColumns"];$i++)
+    for($i=1;$i<=$arr["numberOfColumns"];$i++)
     {
         for($j=0;$j<10;$j++)
         {
@@ -57,319 +55,9 @@ function checkkaohao($photo,$json) {
             $kaohao+=$max_index;
         }
     }
-	return settype($kaohao,"integer");//*/
-}
-$json='{
-            "numberOfColumns":5,
-            "1":[{
-				"0":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"1":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"2":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"3":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"4":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"5":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"6":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"7":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"8":[{
-					"startx":1761,
-					"starty":1454,
-					"stopx":1847,
-					"stopy":1516
-				}],
-				"9":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}]
-			}],
-			"2":[{
-				"0":[{
-					"startx":1870,
-					"starty":958,
-					"stopx":1950,
-					"stopy":1024
-				}],
-				"1":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"2":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"3":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"4":[{
-					"startx":1870,
-					"starty":1205,
-					"stopx":1946,
-					"stopy":1269
-				}],
-				"5":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"6":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"7":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"8":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
-				}],
-				"9":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
-				}]
-			}],
-			"3":[{
-				"0":[{
-					"startx":2078,
-					"starty":695,
-					"stopx":2155,
-					"stopy":1026
-				}],
-				"1":[{
-					"startx":1975,
-					"starty":1025,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"2":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"3":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"4":[{
-					"startx":1975,
-					"starty":1212,
-					"stopx":2047,
-					"stopy":1267
-				}],
-				"5":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"6":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"7":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"8":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
-				}],
-				"9":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
-				}]
-			}],
-			"4":[{
-				"0":[{
-					"startx":2078,
-					"starty":960,
-					"stopx":2157,
-					"stopy":1029
-				}],
-				"1":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"2":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"3":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"4":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"5":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"6":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"7":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"8":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
-				}],
-				"9":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
-				}]
-			}],
-			"5":[{
-				"0":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"1":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"2":[{
-					"startx":2178,
-					"starty":1089,
-					"stopx":2258,
-					"stopy":1150
-				}],
-				"3":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"4":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"5":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"6":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"7":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"8":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}],
-				"9":[{
-					"startx":2426,
-					"starty":880,
-					"stopx":2526,
-					"stopy":980
-				}]
-			}]}';
-echo checkkaohao("http://g.zhousw.top/photo.php?photo=addexam/a.jpeg&x1=0&y1=0&x2=2778&y2=4025",$json);
+	return settype($kaohao,"integer");
+}//*/
+$file=file_get_contents("examConfig.json");
+$json=json_decode($file,true);
+var_dump($json);
 ?>
