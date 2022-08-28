@@ -1,3 +1,6 @@
+<?php
+$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+?>
 <!DOCTYPE html>
 <html>
     <head>

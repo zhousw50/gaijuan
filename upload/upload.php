@@ -6,7 +6,7 @@
         move_uploaded_file($file['tmp_name'],$uniname.".zip");
         $zip = new ZipArchive();
         $zip->open($uniname.".zip");
-        $zip->extractTo($uniname);
+        $zip->extractTo("./".$uniname);
         $zip->close();
         unlink("$uniname.zip");
         $dir=scandir("./$uniname");

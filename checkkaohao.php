@@ -1,5 +1,5 @@
 <?php
-/*
+error_reporting(0);
 function checkphoto($path, $startx, $starty, $stopx, $stopy) {
     $sums = 0;
     $img = imagecreatefromjpeg($path);
@@ -26,38 +26,40 @@ function checkphoto($path, $startx, $starty, $stopx, $stopy) {
     imagedestroy($img1);
     return floor($sums / (($stopx - $startx) * ($stopy - $starty)) * 100);
 }
-function checkkaohao($photo,$arr) {
+function checkkaohao($photo,$arr1) {
+    $arr=$arr1[0]["kaohao"][0];
     $kaohao="";
     $a=array();
-    for($i=1;$i<=$arr["numberOfColumns"];$i++)
+    $number=$arr["numberOfColumns"];
+    for($i=1;$i<=$number;$i++)
     {
-        $c=$arr[$i];
+        $c=$arr[$i][0];
         for($j=0;$j<10;$j++)
         {
-            $zuobiao=$c[$j];
-            var_dump($c);
-            echo "<br>";
+            $zuobiao=$c[$j][0];
             $a[$i][$j]=checkphoto($photo,$zuobiao["startx"],$zuobiao["starty"],$zuobiao["stopx"],$zuobiao["stopy"]);
-
         }
     }
-    var_dump($a);
-    $max=0;
-    $max_index=0;
-    for($i=1;$i<=$arr["numberOfColumns"];$i++)
+    for($i=1;$i<=$number;$i++)
     {
+        $max=0;
+        $max_index=0;
         for($j=0;$j<10;$j++)
         {
             if($a[$i][$j]>$max){
                 $max=$a[$i][$j];
                 $max_index=$j;
             }
-            $kaohao+=$max_index;
+            settype($max_index,"string");
         }
+        $kaohao=$kaohao.$max_index;
     }
-	return settype($kaohao,"integer");
-}//*/
+    settype($kaohao,"integer");
+	return $kaohao;
+}
+header("content-type:application/json;charset:utf-8");
 $file=file_get_contents("examConfig.json");
 $json=json_decode($file,true);
-var_dump($json);
+$result=checkkaohao("./2.jpeg",$json["数学"]);
+echo $result;
 ?>

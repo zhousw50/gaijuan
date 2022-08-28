@@ -1,9 +1,11 @@
 {
 	"exam_name":"测试",
 	"exam_id":"1",
+	"numberOfSubjects": 1,
 	"subject":["数学"],
 	"数学":[{
 		"kaohao":[{
+			"numberOfColumns": 5,
 			"1":[{
 				"0":[{
 					"startx":2426,
@@ -116,30 +118,30 @@
 					"stopy":980
 				}],
 				"8":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
+					"startx":2426,
+					"starty":880,
+					"stopx":2526,
+					"stopy":980
 				}],
 				"9":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
+					"startx":2426,
+					"starty":880,
+					"stopx":2526,
+					"stopy":980
 				}]
 			}],
 			"3":[{
 				"0":[{
-					"startx":2078,
-					"starty":695,
-					"stopx":2155,
-					"stopy":1026
-				}],
-				"1":[{
-					"startx":1975,
-					"starty":1025,
+					"startx":2426,
+					"starty":880,
 					"stopx":2526,
 					"stopy":980
+				}],
+				"1":[{
+					"startx":1978,
+					"starty":1023,
+					"stopx":2054,
+					"stopy":1089
 				}],
 				"2":[{
 					"startx":2426,
@@ -154,8 +156,8 @@
 					"stopy":980
 				}],
 				"4":[{
-					"startx":1975,
-					"starty":1212,
+					"startx":1971,
+					"starty":1210,
 					"stopx":2047,
 					"stopy":1267
 				}],
@@ -178,16 +180,16 @@
 					"stopy":980
 				}],
 				"8":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
+					"startx":2426,
+					"starty":880,
+					"stopx":2526,
+					"stopy":980
 				}],
 				"9":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
+					"startx":2426,
+					"starty":880,
+					"stopx":2526,
+					"stopy":980
 				}]
 			}],
 			"4":[{
@@ -240,16 +242,16 @@
 					"stopy":980
 				}],
 				"8":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
+					"startx":2426,
+					"starty":880,
+					"stopx":2526,
+					"stopy":980
 				}],
 				"9":[{
-					"startx":1777,
-					"starty":1495,
-					"stopx":1830,
-					"stopy":1528
+					"startx":2426,
+					"starty":880,
+					"stopx":2526,
+					"stopy":980
 				}]
 			}],
 			"5":[{
