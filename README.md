@@ -4,3 +4,4 @@
 算啦，等中考完再来给它续命吧！<br>如果你觉得好，请点击右上角的Star<br>
 ![star](https://raw.githubusercontent.com/zhousw50/gaijuan/main/star.gif)
 <br>如果你想为此做贡献,请使用[Pull requests](https://blog.csdn.net/qq_43827595/article/details/104832536)
+我后续会出使用文档的，计划就放在这个仓库的gh-pages分支
