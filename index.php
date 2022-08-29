@@ -62,9 +62,9 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
             if (getCookie("loginas")=="school")
             window.location.href = "school.php";
             else if (getCookie("loginas")=="student")
-            window.location.href="student.php";
+            window.location.href="./student/";
             else if (getCookie("loginas")=="teacher")
-                window.location.href="teacher.php";
+                window.location.href="./teacher/";
         })
         var name1,p1,p2
         function createCookie(name,value,days,path,domain,secure) {

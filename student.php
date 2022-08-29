@@ -17,6 +17,7 @@
     <header></header>
     <div class="mdui-container mdui-card">
         <h1 class="mdui-card-primary-title">你好,<?php
+            error_reporting(0);
 $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 foreach ($link->query("select * from students") as $students){
 if($students["id"]==$_COOKIE["id"])echo $students["name"];

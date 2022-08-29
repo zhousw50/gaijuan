@@ -16,12 +16,13 @@
 <body class="mdui-appbar-with-toolbar mdui-appbar-with-tab">
 <header></header>
 <div class="mdui-container mdui-card">
-    <h1 class="mdui-card-primary-title">你好,<script language="php">
+    <h1 class="mdui-card-primary-title">你好,<?php
+    error_reporting(0);
         $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
         foreach ($link->query("select * from teachers") as $teachers){
             if($teachers["id"]==$_COOKIE["id"])echo $teachers["name"];
         }
-        </script>老师</h1>
+        ?>老师</h1>
 </div>
 <?php
 foreach ($link->query("select * from exams") as $exams){
