@@ -92,7 +92,6 @@ function checktimu($photo,$arr1,$number){
     }*/
 }
 //error_reporting(0);
-header("content-type:application/json;charset:utf-8");
 $file=$_FILES["file"];
 if($file["type"]!="text/plain"){echo "不是文本文档，请重试";die();}
 else {
@@ -100,8 +99,8 @@ else {
 }
 $file=file_get_contents("./examConfig.json");
 unlink("./examConfig.json");
-echo $file;
-/*
+//echo $file;
+///*
 $json=json_decode($file,true);
 $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 for($i=1;$i<=$json["numberOfSubjects"];$i++){
@@ -110,16 +109,18 @@ for($i=1;$i<=$json["numberOfSubjects"];$i++){
     $arr=$json[$subject][0];
     for($j=0;$j<$arr["numberOfTimu"];$j++){
         if($j!=$arr["numberOfTimu"]-1){
-            if($arr[$j][0]["type"]==0) $a=$a."\n timu_$j int,";
-            if($arr[$j][0]["type"]==2) $a=$a."\n timu_$j numeric(10,10),";
+            if($arr[$j][0]["type"]==0) $a=$a."timu_$j int,";
+            if($arr[$j][0]["type"]==2) $a=$a."timu_$j numeric(10,10),";
         }
         else {
-            if($arr[$j][0]["type"]==0) $a=$a."\n timu_$j int";
-            if($arr[$j][0]["type"]==2) $a=$a."\n timu_$j numeric(10,10)";
+            if($arr[$j][0]["type"]==0) $a=$a."timu_$j int";
+            if($arr[$j][0]["type"]==2) $a=$a."timu_$j numeric(10,10)";
         }
     }
     $name=$json["exam_id"]."_".$json["subject"][$i-1];
-    $link->query("create table $name\n(\n id int ,$a\n);");
+    $query="create table $name(id int,url text,$a);";
+    $link->query($query);
+    //echo $query."\n";
     for($z=1;$z<=$arr["numberOfDtk"];$z++) {
         $photo=$arr["dtk_URL"]."$z.jpeg";
         $a = "";
@@ -139,9 +140,10 @@ for($i=1;$i<=$json["numberOfSubjects"];$i++){
             }
         }
         $kaohao = checkkaohao($photo, $json["数学"]);
-        $query = "insert into $name(id ,$a) values ($kaohao ,$b);";
+        $query = "insert into $name(id,url,$a) values ($kaohao,\"$photo\",$b);";
         //echo $query."\n";
         $link->query($query);
     }
-}*/
+}
+echo "处理成功!";//*/
 ?>

@@ -49,8 +49,10 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
                     timeout: 8000,
                     success: function(msg) {
                         LoadIng(false);
+                        var msg1=JSON.parse(msg);
                         Swal.fire({
-                            title: msg
+                            icon:msg1["type"],
+                            title: msg1["msg"]
                         });
                     },
                     error: function() {

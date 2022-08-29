@@ -37,14 +37,17 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     var formdata=new FormData();
     function upload()
     {
-        LoadIng(true,"正在处理数据",220);
+        LoadIng(true,"正在处理数据,可能需要一段时间",220);
         //*
         $.ajax({
             type: "POST",
             url: "./proccessExamData.php",
             data: formdata,
+            cache: false,
             processData: false,
+            contentType: false,
             success: function(msg) {
+                LoadIng(false);
                 Swal.fire({
                     title: msg
                 });
