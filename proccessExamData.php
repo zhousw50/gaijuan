@@ -92,6 +92,7 @@ function checktimu($photo,$arr1,$number){
     }*/
 }
 //error_reporting(0);
+set_time_limit(0);
 $file=$_FILES["file"];
 if($file["type"]!="text/plain"){echo "不是文本文档，请重试";die();}
 else {
@@ -103,6 +104,10 @@ unlink("./examConfig.json");
 ///*
 $json=json_decode($file,true);
 $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+$exam_name=$json["exam_name"];
+$exam_id=$json["exam_id"];
+$prepare=$link->prepare("insert into exams values (?,?,?,?)");
+$prepare->execute(array($exam_name,$exam_id,$file,0));
 for($i=1;$i<=$json["numberOfSubjects"];$i++){
     $a="";
     $subject=$json["subject"][$i-1];
