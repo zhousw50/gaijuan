@@ -3,7 +3,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 ?>
 <html>
 <head>
-    <title>添加试卷</title>
+    <title>添加试卷-改卷系统(开发中)</title>
     <script src="https://unpkg.com/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css">

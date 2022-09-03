@@ -6,7 +6,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 
 <head>
     <meta charset="UTF-8">
-    <title>改卷系统(开发中)</title>
+    <title>登录-改卷系统(开发中)</title>
     <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css" >

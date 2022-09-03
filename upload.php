@@ -5,7 +5,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 <html>
     <head>
         <meta charset="utf-8">
-        <title>图片上传</title>
+        <title>答题卡上传-改卷系统(开发中)</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css" >
         <script src="https://cdn.jsdelivr.net/npm/mdui" ></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
