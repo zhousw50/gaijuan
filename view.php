@@ -97,14 +97,32 @@ else{
         }
     });
     document.getElementById("submit").onclick=function (){
-        Swal.fire({
-            icon:document.getElementById("point").value?"success":"error",
-            title:document.getElementById("point").value?"+"+document.getElementById("point").value:"您没给分",
-            timer:800,
-            showConfirmButton:false,
-            toast: true,
-            position: 'top-end'
-        });
+        $.ajax({
+            type:"POST",
+            url:"./proccessTimu.php",
+            data:"<?php
+                $exam_id=$_GET["exam_id"];
+                $timu=$_GET["timu"];
+                $subject=$_GET["subject"];
+                echo "exam_id=$exam_id&timu=$timu&subject=$subject";
+                ?>&id="+id+"&point="+document.getElementById("point").value,
+            success:function (msg){
+                Swal.fire({
+                    icon:"success",
+                    title:msg,
+                    timer:800,
+                    showConfirmButton:false,
+                    toast: true,
+                    position: 'top-end'
+                }).then(()=>{
+                    window.location.reload();
+                });
+            },
+            error:function (){
+                document.getElementsByTagName("body")[0].innerHTML="<h1>网络问题或不支持ajax</h1>"
+                document.getElementsByTagName("body")[0].removeAttribute("class");
+            }
+        })
         
     }
 </script>
