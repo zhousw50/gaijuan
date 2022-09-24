@@ -11,5 +11,7 @@ foreach ($teacher as $teachers){
         $a=1;
     }
 }
+$_COOKIE["loginas"]="teacher";
+$_COOKIE["id"]=$id;
 if($a==0)echo "{\"type\":\"error\",\"title\":\"登录失败\",\"msg\":\"ID或密码错误\"}";
 ?>

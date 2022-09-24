@@ -11,7 +11,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
         <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
         <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/gh/zhousw50/tools/header.js"></script>
+        <script src="./header.js"></script>
     </head>
     <body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab" style="text-align:center;">
     <header></header>

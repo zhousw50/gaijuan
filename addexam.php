@@ -8,7 +8,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/zhousw50/tools/header.js"></script>
+    <script src="./header.js"></script>
     <script src="https://api.kinh.cc/Static/JavaScript/LoadIng.js"></script>
     <style>
         input{width:50px;}
@@ -37,7 +37,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     var formdata=new FormData();
     function upload()
     {
-        LoadIng(true,"正在处理数据,可能需要一段时间",220);
+        LoadIng(true,"正在处理数据,可能需要一段时间",400);
         //*
         $.ajax({
             type: "POST",

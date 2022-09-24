@@ -28,5 +28,9 @@ foreach ($link->query("select * from ".$exam_id."_"."$subject;") as $item)
 }
 $rr["max_point"]=$config["point"];
 $rr["number"]=$i;
+if($rr["number"]==0){
+    $query=$link->prepare("update exams set finish=1 where id=?;");
+    $query->execute(array($exam_id));
+}
 echo json_encode($rr)
 ?>

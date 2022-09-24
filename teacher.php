@@ -17,18 +17,33 @@
 <header></header>
 <div class="mdui-container mdui-card">
     <h1 class="mdui-card-primary-title">你好,<?php
-    error_reporting(0);
+        error_reporting(0);
+        $subject="";
         $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
-        foreach ($link->query("select * from teachers") as $teachers){
-            if($teachers["id"]==$_COOKIE["id"])echo $teachers["name"];
+        foreach ($link->query("select * from teachers") as $teachers) {
+            if ($teachers["id"] == $_COOKIE["id"]) {
+                echo $teachers["name"];
+                $subject = $teachers["subject"];
+            }
         }
         ?>老师</h1>
 </div>
+<div class="mdui-container mdui-card">
+    <h2>改卷任务</h2>
 <?php
-foreach ($link->query("select * from exams") as $exams){
-
+foreach ($link->query("select * from exams") as $exams) {
+    if ($exams["finish"] != 1) {
+        $config = json_decode($exams["config"], true);
+        foreach ($config["subject"] as $subjects) {
+            if ($subjects == $subject) {
+                echo "<div class='mdui-card-subtitle'>";
+                echo "考试名:".$exams["name"]." 科目:".$subject." <a href='/view.php?exam_id=".$exams["id"]."&subject=".$subject."' target='_blank'>进入改卷</a>";
+            }
+        }
+    }
 }
 ?>
+</div>
 <script>
     header({
         color:"indigo",

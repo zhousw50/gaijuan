@@ -11,7 +11,6 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css" >
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js" ></script>
-    <script src="/studentmanagement/index.js"></script>
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     </head>
     <body>

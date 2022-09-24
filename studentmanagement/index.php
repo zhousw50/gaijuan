@@ -10,7 +10,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js"></script>
     <script src="/studentmanagement/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/zhousw50/tools/header.min.js"></script>
+    <script src="../header.js"></script>
 </head>
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">
@@ -26,6 +26,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
             <th>密码</th>
         </tr><?php
         echo "\n";
+        $i=0;
 foreach ($link->query("select * from students;")as $students){
     $i++;
     if($i%2==1)

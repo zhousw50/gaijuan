@@ -10,7 +10,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js" integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous"></script>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/zhousw50/tools/header.min.js"></script>
+    <script src="../header.js"></script>
 </head>
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">

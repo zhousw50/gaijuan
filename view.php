@@ -15,7 +15,7 @@ else{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css" >
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js" ></script>
     <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/zhousw50/tools/header.js"></script>
+    <script src="./header.js"></script>
     <link rel="stylesheet" href="https://burgerstudio.github.io/waves/waves.min.css">
     <link rel="stylesheet" href="https://burgerstudio.github.io/theme.css">
     <meta name="viewport" content="width=device-width">
@@ -87,6 +87,14 @@ else{
             ?>",
         success:function (msg1){
             msg=JSON.parse(msg1);
+            if(msg["number"]==0){
+                Swal.fire({
+                    icon:"info",
+                    title:"这道题已经改完"
+                }).then(()=>{
+                    window.location.href='./';
+                })
+            }
             var a=Math.floor(Math.random()*msg["number"]);
             id=msg["id"][a]
             document.getElementById("photo").src=msg[id]["photo"];

@@ -115,11 +115,11 @@ for($i=1;$i<=$json["numberOfSubjects"];$i++){
     for($j=0;$j<$arr["numberOfTimu"];$j++){
         if($j!=$arr["numberOfTimu"]-1){
             if($arr[$j][0]["type"]==0) $a=$a."timu_$j int,";
-            if($arr[$j][0]["type"]==2) $a=$a."timu_$j numeric(10,10),";
+            if($arr[$j][0]["type"]==2) $a=$a."timu_$j text,";
         }
         else {
             if($arr[$j][0]["type"]==0) $a=$a."timu_$j int";
-            if($arr[$j][0]["type"]==2) $a=$a."timu_$j numeric(10,10)";
+            if($arr[$j][0]["type"]==2) $a=$a."timu_$j text";
         }
     }
     $name=$json["exam_id"]."_".$json["subject"][$i-1];
