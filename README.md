@@ -5,3 +5,5 @@
 ![star](https://raw.githubusercontent.com/zhousw50/gaijuan/main/star.gif)
 <br>如果你想为此做贡献,请使用[Pull requests](https://blog.csdn.net/qq_43827595/article/details/104832536)<br>
 我后续会出使用文档的，计划就放在这个仓库的gh-pages分支
+<br># 每星期实现一个新功能<br>
+9.25.2022upd教师端功能开发中
