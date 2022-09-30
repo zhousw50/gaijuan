@@ -1,12 +1,26 @@
 <?php
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
-if(!$_GET["exam_id"]&&!$_GET["timu"])echo "<script>window.location.href='./';</script>";
-else{
-    $exam_id=$_GET["exam_id"];
-    $timu=$_GET["timu"];
+function get($var){
+    $val="";
+    $url=$_SERVER['REQUEST_URI'];
+    $arr=explode("/",$url);
+    $arr1=array();
+    $number=1;
+    foreach($arr as $a){
+        $number++;
+    }
+    for($i=2;$i<=$number-2;$i++)
+    {
+        $arr1[$i-2]=$arr[$i];
+    }
+    for($i=0;$i<$number-3;$i++){
+        if($arr1[$i]==$var)$val=$arr1[$i+1];
+    }
+    return $val;
 }
-?>
-<!DOCTYPE html>
+$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+    $exam_id=get("exam");
+    $timu=get("timu");
+?><!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -15,7 +29,7 @@ else{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css" >
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js" ></script>
     <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
-    <script src="./header.js"></script>
+    <script src="/header.js"></script>
     <link rel="stylesheet" href="https://burgerstudio.github.io/waves/waves.min.css">
     <link rel="stylesheet" href="https://burgerstudio.github.io/theme.css">
     <meta name="viewport" content="width=device-width">
@@ -73,15 +87,15 @@ else{
     var msg,id;
     $.ajax({
         type:"POST",
-        url:"./getTimu.php",
+        url:"/getTimu.php",
         data:"<?php
-            if(!$_GET["exam_id"]&&!$_GET["timu"]){
+            if(!get("exam")&&!get("timu")){
                 header('Refresh: 0; url=./');
             }
             else{
-                $exam_id=$_GET["exam_id"];
-                $timu=$_GET["timu"];
-                $subject=$_GET["subject"];
+                $exam_id=get("exam");
+                $timu=get("timu");
+                $subject=get("subject");
                 echo "exam_id=$exam_id&timu=$timu&subject=$subject";
             }
             ?>",
@@ -107,11 +121,11 @@ else{
     document.getElementById("submit").onclick=function (){
         $.ajax({
             type:"POST",
-            url:"./proccessTimu.php",
+            url:"/proccessTimu.php",
             data:"<?php
-                $exam_id=$_GET["exam_id"];
-                $timu=$_GET["timu"];
-                $subject=$_GET["subject"];
+                $exam_id=get("exam");
+                $timu=get("timu");
+                $subject=get("subject");
                 echo "exam_id=$exam_id&timu=$timu&subject=$subject";
                 ?>&id="+id+"&point="+document.getElementById("point").value,
             success:function (msg){
