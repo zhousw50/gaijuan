@@ -1,5 +1,5 @@
 <?php
-include_once "./config.php";
+include_once "../config.php";
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -30,7 +30,7 @@ $aaa=$link->query("select * from students;");
 $class="";
 foreach ($aaa as $student){
     if($student["class"]!=$class){
-        echo "<button class='mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent' onclick=\"window.open('/analyseAllClass.php/class/".$student["class"]."/subject/$subject/exam/$exam');\">".$student["class"]."</button><br>";
+        echo "<button class='mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent' onclick=\"window.open('./analyseAllClass.php/class/".$student["class"]."/subject/$subject/exam/$exam');\">".$student["class"]."</button><br>";
         $student["class"]=$class;
     }
 }

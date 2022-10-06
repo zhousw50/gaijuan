@@ -101,7 +101,7 @@ include_once "./config.php";
             var pwd=document.getElementById('pwd').value;
             $.ajax({
                 type:"POST",
-                url:"checkStudentLogin.php",
+                url:"/login/checkStudentLogin.php",
                 data:"id="+id+"&pwd="+pwd,
                 success:function (ms)
                 {
@@ -127,7 +127,7 @@ include_once "./config.php";
             var pwd=document.getElementById('pwd').value;
             $.ajax({
                 type:"POST",
-                url:"checkTeacherLogin.php",
+                url:"/login/checkTeacherLogin.php",
                 data:"id="+id+"&pwd="+pwd,
                 success:function (ms)
                 {

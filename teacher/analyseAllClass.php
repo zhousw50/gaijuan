@@ -17,7 +17,7 @@ function get($var){
     }
     return $val;
 }
-include_once "./config.php";
+include_once "../config.php";
 $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 ?>
 <!DOCTYPE html>
@@ -82,14 +82,15 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     foreach($link->query("select id,name from students where class=".get("class").";") as $student){
         echo "$.ajax({
         type:\"GET\",
-        url:\"/getScore.php?examid=".get("exam")."&id=".$student["id"]."\",
+        url:\"/teacher/getScore.php?examid=".get("exam")."&id=".$student["id"]."\",
         success:function (msg) {
-        var a=JSON.parse(msg);
-        document.getElementById(\"score-".$student["id"]."\").innerText=a[\"$subject\"];
+            var a=JSON.parse(msg);
+            document.getElementById(\"score-".$student["id"]."\").innerText=a[\"$subject\"];
         }
-        })";
+    });";
     }
     ?>
+
 </script>
 </body>
 </html>

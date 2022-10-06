@@ -1,5 +1,5 @@
 <?php
-include_once "./config.php";
+include_once "../config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +31,7 @@ include_once "./config.php";
         }
         ?>老师</h1>
     <select class="mdui-select" mdui-select>
-        <option value="1">State 1</option>
-        <option value="2">State 2</option>
-        <option value="3" disabled>State 3</option>
-        <option value="4">State 4</option>
-        <option value="5">State 5</option>
-        <option value="6">State 6</option>
+        <option value=""></option>
     </select>
 </div>
 <iframe frameborder="0" src="" id="frame" width="100%" height="100%"></iframe>
