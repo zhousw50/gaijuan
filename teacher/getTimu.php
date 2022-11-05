@@ -18,7 +18,7 @@ foreach ($link->query("select * from ".$exam_id."_"."$subject;") as $item)
 {
     $url=$item["url"];
     $id=$item["id"];
-    $photo="http://g.zhousw.top/cutPhoto.php?photo=$url&x1=$x1&y1=$y1&x2=$x2&y2=$y2";
+    $photo="/school/cutPhoto.php?photo=$url&x1=$x1&y1=$y1&x2=$x2&y2=$y2";
     if($item["timu_$timu"]==NULL&&$id!=NULL) {
         $rr["id"][$i]=$id;
         $rr[$id]["id"]=$id;

@@ -8,8 +8,8 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js"></script>
-    <script src="./header.js"></script>
-    <script src="https://api.kinh.cc/Static/JavaScript/LoadIng.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/LoadIng.js"></script>
     <style>
         input{width:50px;}
     </style>
@@ -17,7 +17,7 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab">
 <header></header>
-<div class="mdui-container mdui-card" style="text-align: center;"><h1 class="mdui-card-primary-title">试卷设置</h1>
+<div style="text-align: center;">
     <div class="mdui-card-content">
         <form enctype="multipart/form-data" style="display: none"><input id="file" name="file" type="file" /></form>
         <div id="upload" class="mdui-ripple">
@@ -29,11 +29,6 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 </div>
 
 <script>
-    header({
-        color:"indigo",
-        header_title:"添加试卷",
-        header_link:""
-    });
     var formdata=new FormData();
     function upload()
     {

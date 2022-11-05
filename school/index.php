@@ -1,21 +1,35 @@
 <?php
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
-?>
-<!DOCTYPE html>
+include_once "../config.php"
+?><!DOCTYPE html>
 <html>
-    <head>
-        <title>学校管理员页面</title>
-        <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
-        
-    <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css" >
-    <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js" ></script>
-    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    </head>
-    <body>
-        <a href="studentmanagement/">管理学生</a>
-        <a href="teachermanagement/">管理教师</a>
-        <a href="addexam/">添加考试</a>
-    </body>
+<head>
+    <title>学校管理员页面</title>
+    <script src=<?php echo $jquery_js; ?>></script>
+    <link rel="stylesheet" href=<?php echo $mdui_css; ?>>
+    <script src=<?php echo $mdui_js; ?>></script>
+    <script src=<?php echo $swal2_js; ?>></script>
+    <script src=<?php echo $header_js; ?>></script>
+    <link rel="stylesheet" href=<?php echo $waves_css; ?>>
+    <link rel="stylesheet" href=<?php echo $theme_css; ?>>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-appbar-with-tab mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
+    <header></header>
+    <div class="mdui-container mdui-card mdui-p-t-3">
+        <button class="mdui-btn mdui-btn-raised" onclick="frame('../studentmanagement/')">管理学生</button>
+        <button class="mdui-btn mdui-btn-raised" onclick="frame('../teachermanagement/')">管理教师</button>
+        <button class="mdui-btn mdui-btn-raised" onclick="frame('./addexam.php')">添加考试</button>
+        <button class="mdui-btn mdui-btn-raised" onclick="frame('./manageexam.php')">管理考试</button><br>
+        <div style="height: 5px;width: 100%"></div>
+        <iframe frameborder="0" src="" id="frame" width="100%" scrolling="0"></iframe>
+    </div>
+    <script>
+        header({color:"indigo",header_title:"学校管理员页面",header_link:"./"})
+        function frame(url){
+            document.getElementById("frame").src=url;
+        }
+        setInterval(function (){
+            document.getElementById("frame").height=window.innerHeight-300;
+        },100)
+    </script>
+</body>
 </html>

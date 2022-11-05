@@ -18,45 +18,29 @@ function get($var){
     return $val;
 }
 include_once "../config.php";
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>考试成绩 - <?php echo get("class");?> - 改卷系统(开发中)</title>
     <script src=<?php echo $jquery_js; ?>></script>
     <link rel="stylesheet" href=<?php echo $mdui_css; ?>>
     <script src=<?php echo $mdui_js; ?>></script>
     <script src=<?php echo $swal2_js; ?>></script>
     <script src=<?php echo $header_js; ?>></script>
-    <link rel="stylesheet" href=<?php echo $waves_css; ?>>
-    <link rel="stylesheet" href=<?php echo $theme_css; ?>>
 </head>
 
-<body class="mdui-appbar-with-toolbar mdui-appbar-with-tab mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
-<header></header>
-<script>
-    header({
-        color:"indigo",
-        header_title:"改卷系统-教师端",
-        header_link:"./"
-    });
-</script>
+<body><?php
+$prepare=$link->prepare("select * from exams where id=?");
+$prepare->execute(array(get("exam")));
+$exam=$prepare->fetch();
+?><?php
+$subject=urldecode(get("subject"));?>
 <div class="mdui-container">
     <div class="mdui-card">
         <div class="mdui-card-container">
-            <h3 class="mdui-primary-title">
-                <?php echo get("class");?>班 <?php
-                $prepare=$link->prepare("select * from exams where id=?");
-                $prepare->execute(array(get("exam")));
-                $exam=$prepare->fetch();
-                echo $exam["name"];
-                ?>考试成绩 <?php
-                $subject=urldecode(get("subject"));
-                echo urldecode(get("subject")); ?>科
-            </h3>
+
             <table class="mdui-table-fluid mdui-table mdui-table-hoverable">
                 <thead>
                 <tr>

@@ -1,5 +1,5 @@
 <?php
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+include_once "../config.php"
 ?>
 <html>
 
@@ -10,12 +10,14 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js"></script>
     <script src="/studentmanagement/index.js"></script>
-    <script src="../header.js"></script>
+    <script src="../js/header.js"></script>
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">
-<header></header>
-<div class="mdui-container mdui-card"><h1 class="mdui-card-primary-title">学生列表</h1><span class="mdui-card-primary-subtitle">每个学生学号必须唯一，学号是考试时的考号</span><div class="mdui-card-content">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo ">
+<button class="mdui-btn mdui-btn-raised" onclick="addstudent()"><i class="mdui-icon material-icons">&#xe145;</i>添加学生</button>
+<button class="mdui-btn mdui-btn-raised" onclick="批量()"><i class="mdui-icon material-icons">&#xe7f0;</i>批量添加</button>
+<button class="mdui-btn mdui-btn-raised" onclick="delstudent()"><i class="mdui-icon material-icons">&#xe872;</i>删除学生</button>
+<h1>学生列表</h1><span class="mdui-card-primary-subtitle">每个学生学号必须唯一，学号是考试时的考号</span><div class="mdui-card-content">
 <div id="container">
 <div class="mdui-table-fluid">
     <table class="mdui-table mdui-table-hoverable mdui-table-col-numeric">

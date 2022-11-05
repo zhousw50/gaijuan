@@ -18,38 +18,63 @@ include_once "../config.php";
 
 <body class="mdui-appbar-with-toolbar mdui-appbar-with-tab mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
 <header></header>
+<div id="container">
 <div class="mdui-container mdui-card mdui-p-t-3">
-    <h1 class="mdui-card-primary-title">你好,<?php
+    <h2 class="mdui-card-primary-title">你好,<?php
         error_reporting(0);
         $subject="";
-        $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
         foreach ($link->query("select * from teachers") as $teachers) {
             if ($teachers["id"] == $_COOKIE["id"]) {
                 echo $teachers["name"];
                 $subject = $teachers["subject"];
             }
         }
-        ?>老师</h1>
-    <select class="mdui-select" mdui-select>
-        <option value=""></option>
-    </select>
+        ?>老师</h2>
 </div>
-<iframe frameborder="0" src="" id="frame" width="100%" height="100%"></iframe>
-<div class="mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-brown mdui-bottom-nav-fixed">
-    <a onclick="frame('t1.php');" class="mdui-ripple mdui-bottom-nav-active">
-        <i class="mdui-icon material-icons">wallpaper</i>
-        <label>阅卷</label>
-    </a>
-    <a onclick="frame('t2.php?exam=1')" class="mdui-ripple mdui-bottom-nav-active">
-        <i class="mdui-icon material-icons">class</i>
-        <label>查看成绩</label>
-    </a>
+<div class="mdui-container mdui-card mdui-p-t-3">
+    考试:
+<?php
+foreach($link->query("select * from exams order by id Desc;") as $exam)
+{
+    $config=json_decode($exam["config"],true);
+    $name=$config["exam_name"];
+    $id=$config["exam_id"];
+    $subjects=$config["subject"];
+    foreach ($subjects as $item){
+        if($item==$subject){
+            echo "
+    <h1 class=\"mdui-card-primary-title\"><a onclick='frame(\"exam.php?exam=$id\")'>$name</a></h1>
+";
+        }
+    }
+
+}
+?>
 </div>
-<script>
+</div>
+    <script>
+        var aaaa=1;
+        function open(html){
+            var empty=document.createElement("div")
+            empty.id="window-"+aaaa
+            empty.style+="margin: 0;padding: 0;position:absolute; top:0; bottom:0; left:0; right:0; background:white;"
+            empty.innerHTML="<div style='height: 120px'></div><button  class='mdui-btn mdui-btn-raised' onclick='back()'>返回首页</button><br>"+html
+
+            document.body.appendChild(empty)
+        }
+        function back(){
+            document.getElementById("window-"+aaaa).remove();
+            aaaa--
+        }
     function frame(url){
+            open("<div class=\"mdui-container mdui-card mdui-p-t-3\">\
+        <iframe id=\"frame\" src=\"\" frameborder=\"0\" width=\"100%\" scrolling=\"0\"></iframe>\
+        </div>")
         document.getElementById("frame").src=url;
     }
-    frame("t1.php");
+    setInterval(function (){
+        document.getElementById("frame").height=window.innerHeight-200;
+    },100)
     header({
         color:"indigo",
         header_title:"改卷系统-教师端",

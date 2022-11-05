@@ -22,25 +22,22 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     $timu=get("timu");
 ?>
 <?php
-include_once "./config.php";
+include_once "../config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>阅卷 - 改卷系统(开发中)</title>
     <script src=<?php echo $jquery_js; ?>></script>
     <link rel="stylesheet" href=<?php echo $mdui_css; ?>>
     <script src=<?php echo $mdui_js; ?>></script>
     <script src=<?php echo $swal2_js; ?>></script>
     <script src=<?php echo $header_js; ?>></script>
     <link rel="stylesheet" href=<?php echo $waves_css; ?>>
-    <link rel="stylesheet" href=<?php echo $theme_css; ?>>
 </head>
-<body class="mdui-appbar-with-toolbar mdui-appbar-with-tab">
+<body>
 <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
-<header></header>
 <div class="mdui-container mdui-p-t-3 mdui-col-xs-8 mdui-col-offset-xs-3">
     <div class="mdui-col">
         <div class="mdui-card">
@@ -69,8 +66,8 @@ include_once "./config.php";
     </div>
 </div>
 <script>
-    header({color:"indigo",header_title:"阅卷页面",header_link:""});
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    var msg,id;
     document.getElementById("point").oninput = function () {
         if (this.value > msg["max_point"]) {
             hasError = true;
@@ -88,10 +85,9 @@ include_once "./config.php";
             if(!this.value)document.getElementById("submit").setAttribute("disabled","true");
         }
     }
-    var msg,id;
     $.ajax({
         type:"POST",
-        url:"/getTimu.php",
+        url:"/teacher/getTimu.php",
         data:"<?php
             if(!get("exam")&&!get("timu")){
                 header('Refresh: 0; url=./');
@@ -109,8 +105,6 @@ include_once "./config.php";
                 Swal.fire({
                     icon:"info",
                     title:"这道题已经改完"
-                }).then(()=>{
-                    window.location.href='/';
                 })
             }
             var a=Math.floor(Math.random()*msg["number"]);
@@ -125,7 +119,7 @@ include_once "./config.php";
     document.getElementById("submit").onclick=function (){
         $.ajax({
             type:"POST",
-            url:"/proccessTimu.php",
+            url:"/teacher/proccessTimu.php",
             data:"<?php
                 $exam_id=get("exam");
                 $timu=get("timu");

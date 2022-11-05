@@ -1,5 +1,5 @@
 <?php
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+include_once "../config.php";
 ?>
 <html>
 
@@ -10,12 +10,14 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
     <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js" integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous"></script>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="../header.js"></script>
+    <script src="../js/header.js"></script>
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">
-<header></header>
-<div class="mdui-container mdui-card"><h1 class="mdui-card-primary-title">教师列表</h1><div class="mdui-card-content">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo">
+<button class="mdui-btn mdui-btn-raised" onclick="add()"><i class="mdui-icon material-icons">&#xe145;</i>添加教师</button>
+<button class="mdui-btn mdui-btn-raised" onclick="批量()"><i class="mdui-icon material-icons">&#xe7f0;</i>批量添加</button>
+<button class="mdui-btn mdui-btn-raised" onclick="del()"><i class="mdui-icon material-icons">&#xe872;</i>删除教师</button>
+<h1 class="mdui-card-primary-title">教师列表</h1><div class="mdui-card-content">
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable mdui-table-col-numeric">
             <tr>

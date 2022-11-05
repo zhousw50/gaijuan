@@ -6,7 +6,6 @@ include_once "../config.php";
 
     <head>
         <meta charset="UTF-8">
-        <title>教师端 - 改卷系统(开发中)</title>
         <script src=<?php echo $jquery_js; ?>></script>
         <link rel="stylesheet" href=<?php echo $mdui_css; ?>>
         <script src=<?php echo $mdui_js; ?>></script>
@@ -15,11 +14,9 @@ include_once "../config.php";
         <link rel="stylesheet" href=<?php echo $waves_css; ?>>
         <link rel="stylesheet" href=<?php echo $theme_css; ?>>
     </head>
-<body>
-<div class="mdui-container mdui-card mdui-p-t-3">
+<body>选择班级
 <?php
 $subject="";
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
 foreach ($link->query("select * from teachers") as $teachers) {
     if ($teachers["id"] == $_COOKIE["id"]) {
         $subject = $teachers["subject"];
@@ -30,11 +27,19 @@ $aaa=$link->query("select * from students;");
 $class="";
 foreach ($aaa as $student){
     if($student["class"]!=$class){
-        echo "<button class='mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent' onclick=\"window.open('./analyseAllClass.php/class/".$student["class"]."/subject/$subject/exam/$exam');\">".$student["class"]."</button><br>";
+        echo "<button class='mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent' onclick=\"frame('./analyseAllClass.php/class/".$student["class"]."/subject/$subject/exam/$exam');\">".$student["class"]."</button>";
         $student["class"]=$class;
     }
 }
-?>
-</div>
+?><br><br><br>
+<iframe frameborder="0" src="" id="frame" width="100%" scrolling="0"></iframe>
+<script>
+    function frame(url){
+        document.getElementById("frame").src=url;
+    }
+    setInterval(function (){
+        document.getElementById("frame").height=window.innerHeight-100;
+    },100)
+</script>
 </body>
 </html>
