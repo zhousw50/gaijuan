@@ -26,16 +26,16 @@ function checkphoto($path, $startx, $starty, $stopx, $stopy) {
     return floor($sums / (($stopx - $startx) * ($stopy - $starty)) * 100);
 }
 function checkkaohao($photo,$arr1) {
-    $arr=$arr1[0]["kaohao"][0];
+    $arr=$arr1["kaohao"];
     $kaohao="";
     $a=array();
     $number=$arr["numberOfColumns"];
     for($i=1;$i<=$number;$i++)
     {
-        $c=$arr[$i][0];
+        $c=$arr[$i];
         for($j=0;$j<10;$j++)
         {
-            $zuobiao=$c[$j][0];
+            $zuobiao=$c[$j];
             $a[$i][$j]=checkphoto($photo,$zuobiao["startx"],$zuobiao["starty"],$zuobiao["stopx"],$zuobiao["stopy"]);
         }
     }
@@ -57,11 +57,11 @@ function checkkaohao($photo,$arr1) {
 	return $kaohao;
 }
 function checktimu($photo,$arr1,$number){
-    $arr=$arr1[0][$number][0];
+    $arr=$arr1[$number];
     $a=array();
     if($arr["type"]==0){//如果是选择题,选最大密度
         for($i=1;$i<=$arr["choose"];$i++){
-            $zuobiao=$arr[$i][0];
+            $zuobiao=$arr[$i];
             $a[$i]=checkphoto($photo,$zuobiao["startx"],$zuobiao["starty"],$zuobiao["stopx"],$zuobiao["stopy"]);
         }
         $max=0;
@@ -78,7 +78,7 @@ function checktimu($photo,$arr1,$number){
     }/*多项选择题部分没思路,暂不开发
     if($arr["type"]==1){
         for($i=1;$i<=$arr["choose"];$i++){
-            $zuobiao=$arr[$i][0];
+            $zuobiao=$arr[$i];
             $a[$i]=checkphoto($photo,$zuobiao["startx"],$zuobiao["starty"],$zuobiao["stopx"],$zuobiao["stopy"]);
         }
         $max=0;
@@ -111,15 +111,15 @@ $prepare->execute(array($exam_name,$exam_id,$file,0));
 for($i=1;$i<=$json["numberOfSubjects"];$i++){
     $a="";
     $subject=$json["subject"][$i-1];
-    $arr=$json[$subject][0];
+    $arr=$json[$subject];
     for($j=0;$j<$arr["numberOfTimu"];$j++){
         if($j!=$arr["numberOfTimu"]-1){
-            if($arr[$j][0]["type"]==0) $a=$a."timu_$j int,";
-            if($arr[$j][0]["type"]==2) $a=$a."timu_$j text,";
+            if($arr[$j]["type"]==0) $a=$a."timu_$j int,";
+            if($arr[$j]["type"]==2) $a=$a."timu_$j text,";
         }
         else {
-            if($arr[$j][0]["type"]==0) $a=$a."timu_$j int";
-            if($arr[$j][0]["type"]==2) $a=$a."timu_$j text";
+            if($arr[$j]["type"]==0) $a=$a."timu_$j int";
+            if($arr[$j]["type"]==2) $a=$a."timu_$j text";
         }
     }
     $name=$json["exam_id"]."_".$json["subject"][$i-1];
@@ -131,17 +131,17 @@ for($i=1;$i<=$json["numberOfSubjects"];$i++){
         $a = "";
         for ($j = 0; $j < $arr["numberOfTimu"]; $j++) {
             if ($j != $arr["numberOfTimu"] - 1) {
-                if ($arr[$j][0]["type"] == 0) $a = $a . " timu_$j ,";
+                if ($arr[$j]["type"] == 0) $a = $a . " timu_$j ,";
             } else {
-                if ($arr[$j][0]["type"] == 0) $a = $a . " timu_$j ";
+                if ($arr[$j]["type"] == 0) $a = $a . " timu_$j ";
             }
         }
         $b = "";
         for ($j = 0; $j < $arr["numberOfTimu"]; $j++) {
             if ($j != $arr["numberOfTimu"] - 1) {
-                if ($arr[$j][0]["type"] == 0) $b = $b . " " . checktimu($photo, $json["数学"], $j) . " ,";
+                if ($arr[$j]["type"] == 0) $b = $b . " " . checktimu($photo, $json["数学"], $j) . " ,";
             } else {
-                if ($arr[$j][0]["type"] == 0) $b = $b . " " . checktimu($photo, $json["数学"], $j) . " ";
+                if ($arr[$j]["type"] == 0) $b = $b . " " . checktimu($photo, $json["数学"], $j) . " ";
             }
         }
         $kaohao = checkkaohao($photo, $json["数学"]);

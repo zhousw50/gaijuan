@@ -16,8 +16,8 @@ foreach($config["subject"] as $item)
     $prepare=$link->prepare("select * from ".$examid."_"."$item where id=".$_GET["id"]);
     $prepare->execute();
     $a=$prepare->fetch();
-    for($i=0;$i<$config[$item][0]["numberOfTimu"];$i++){
-        $timuconfig=$config[$item][0][$i][0];
+    for($i=0;$i<$config[$item]["numberOfTimu"];$i++){
+        $timuconfig=$config[$item][$i];
         if($timuconfig["type"]==0){
             if($a["timu_$i"]==$timuconfig["ans"]){
                 $score+=$timuconfig["point"];

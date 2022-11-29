@@ -18,7 +18,7 @@ include_once "../config.php"
         <button class="mdui-btn mdui-btn-raised" onclick="frame('../studentmanagement/')">管理学生</button>
         <button class="mdui-btn mdui-btn-raised" onclick="frame('../teachermanagement/')">管理教师</button>
         <button class="mdui-btn mdui-btn-raised" onclick="frame('./addexam.php')">添加考试</button>
-        <button class="mdui-btn mdui-btn-raised" onclick="frame('./manageexam.php')">管理考试</button><br>
+        <button class="mdui-btn mdui-btn-raised" onclick="frame('./choose.php')">管理考试</button><br>
         <div style="height: 5px;width: 100%"></div>
         <iframe frameborder="0" src="" id="frame" width="100%" scrolling="0"></iframe>
     </div>
@@ -28,7 +28,7 @@ include_once "../config.php"
             document.getElementById("frame").src=url;
         }
         setInterval(function (){
-            document.getElementById("frame").height=window.innerHeight-300;
+            document.getElementById("frame").height=window.innerHeight-200;
         },100)
     </script>
 </body>

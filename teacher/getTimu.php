@@ -7,7 +7,7 @@ $query=$link->prepare("select * from exams where id=?;");
 $query->execute(array($exam_id));
 $result=$query->fetch();
 $json=json_decode($result["config"],true);
-$config=$json[$subject][0][$timu][0];
+$config=$json[$subject][$timu];
 $x1=$config["startx"];
 $y1=$config["starty"];
 $x2=$config["stopx"];

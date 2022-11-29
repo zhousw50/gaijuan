@@ -32,8 +32,8 @@ include_once "../config.php";
                 $config = json_decode($exams["config"], true);
                 foreach ($config["subject"] as $subjects) {
                     if ($subjects == $subject) {
-                        for($i=0;$i<$config[$subject][0]["numberOfTimu"];$i++){
-                            if($config[$subject][0][$i][0]["type"]==2)
+                        for($i=0;$i<$config[$subject]["numberOfTimu"];$i++){
+                            if($config[$subject][$i]["type"]==2)
                                 echo "第 $i 题<button class='mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent' onclick=\"frame('/teacher/yuejuan.php/exam/".$exams["id"]."/subject/".$subject."/timu/$i');\"> 进入改卷 </button><br>";
                         }
                     }
