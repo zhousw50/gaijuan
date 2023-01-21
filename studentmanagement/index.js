@@ -1,9 +1,7 @@
 function addstudent() {
-    Swal.fire({
-        showConfirmButton: false,
-        icon: "info",
+    mdui.dialog({
         title: "添加学生",
-        html: "<div class=\"mdui-textfield mdui-textfield-floating-label\">\
+        content: "<div class=\"mdui-textfield mdui-textfield-floating-label\">\
             <label class=\"mdui-textfield-label\">班级</label>\
             <input id=\"class\" class=\"mdui-textfield-input\"/>\
             </div>\
@@ -18,8 +16,18 @@ function addstudent() {
             <div class=\"mdui-textfield mdui-textfield-floating-label\">\
             <label class=\"mdui-textfield-label\">密码</label>\
             <input id=\"pwd\" class=\"mdui-textfield-input\"/>\
-            </div>\
-            <button type=\"button\" class=\"swal2-confirm swal2-styled\" aria-label style=\"display: inline-block;\" onclick=\"add()\">添加学生</button>"
+            </div>",
+        buttons: [
+            {
+                text: '取消'
+            },
+            {
+                text: '确认',
+                onClick: function () {
+                    add()
+                }
+            }
+        ]
     })
 }
 function add(){
@@ -54,21 +62,31 @@ function add(){
         });
 }
 function delstudent() {
-    Swal.fire({
-        icon: "info",
+    mdui.dialog({
         title: "删除学生",
-        text:"输入学号",
-        input: "text",
-        showConfirmButton: true,
-        showCancelButton: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-    }).then((result) => {
-        if(result.value){
+        content:"<div class=\"mdui-textfield mdui-textfield-floating-label\">\
+            <label class=\"mdui-textfield-label\">id</label>\
+            <input id=\"id\" class=\"mdui-textfield-input\"/>\
+            </div>",
+        buttons: [
+            {
+                text: '取消'
+            },
+            {
+                text: '确认',
+                onClick: function () {
+                    del()
+                }
+            }
+        ]
+    })
+}
+function del(){
+    if(document.getElementById("id").value){
         $.ajax({
             type: "POST",
             url: "delstudents.php",
-            data: "id=" + result.value,
+            data: "id=" + document.getElementById("id").value,
             success: function(msg) {
                 Swal.fire({
                     icon: "success",
@@ -90,16 +108,24 @@ function delstudent() {
                 });
             }
         });}
-    })
 }
-
 function 批量() {
-    Swal.fire({
-        showConfirmButton: false,
-        icon: "info",
+    mdui.dialog({
         title: "批量添加",
-        html: "<div class=\"mdui-textfield mdui-textfield-floating-label\"><label class=\"mdui-textfield-label\">格式:每一行4个参数:班级+一个空格+学号+一个空格+姓名+一个空格+密码</label><textarea class=\"mdui-textfield-input\" rows=\"10\" id=\"message\"></textarea>\<button type=\"button\" class=\"swal2-confirm swal2-styled\" aria-label style=\"display: inline-block;\" onclick=\"piliangadd()\">批量添加</button>\
-                            </form>"
+        content: "<div class=\"mdui-textfield mdui-textfield-floating-label\">" +
+            "<label class=\"mdui-textfield-label\">格式:每一行4个参数:班级+一个空格+学号+一个空格+姓名+一个空格+密码</label>" +
+            "<textarea class=\"mdui-textfield-input\" rows=\"10\" id=\"message\"></textarea>",
+        buttons: [
+            {
+                text: '取消'
+            },
+            {
+                text: '确认',
+                onClick: function () {
+                    piliangadd()
+                }
+            }
+        ]
     })
 }
 function piliangadd(){

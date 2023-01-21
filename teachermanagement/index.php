@@ -13,7 +13,7 @@ include_once "../config.php";
     <script src="../js/header.js"></script>
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo">
+<body class="mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
 <button class="mdui-btn mdui-btn-raised" onclick="add()"><i class="mdui-icon material-icons">&#xe145;</i>添加教师</button>
 <button class="mdui-btn mdui-btn-raised" onclick="批量()"><i class="mdui-icon material-icons">&#xe7f0;</i>批量添加</button>
 <button class="mdui-btn mdui-btn-raised" onclick="del()"><i class="mdui-icon material-icons">&#xe872;</i>删除教师</button>

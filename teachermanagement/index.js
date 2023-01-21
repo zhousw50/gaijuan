@@ -1,11 +1,8 @@
         function add()
         {
-            Swal.fire({
-                showCancelButton:true,
-                showConfirmButton: false,
-                icon:"info",
+            mdui.dialog({
                 title:"添加教师",
-                html:"<div class=\"mdui-textfield mdui-textfield-floating-label\">\
+                content:"<div class=\"mdui-textfield mdui-textfield-floating-label\">\
         <label class=\"mdui-textfield-label\">科目</label>\
         <input id=\"subject\" class=\"mdui-textfield-input\"/>\
         </div>\
@@ -20,10 +17,18 @@
         <div class=\"mdui-textfield mdui-textfield-floating-label\">\
         <label class=\"mdui-textfield-label\">密码</label>\
         <input id=\"pwd\" class=\"mdui-textfield-input\"/>\
-        </div>\
-        <button type=\"button\" class=\"swal2-confirm swal2-styled\" aria-label style=\"display: inline-block;\" onclick=\"add2()\">添加教师</button>",
-        
-                cancelButtonText:'取消'
+        </div>",
+                buttons: [
+                    {
+                        text: '取消'
+                    },
+                    {
+                        text: '确认',
+                        onClick: function () {
+                            add2()
+                        }
+                    }
+                ]
             })
         }
         function add2()
@@ -58,60 +63,55 @@
                     }
                 });
         }
+        function del2(){
+            $.ajax({
+                type: "POST",
+                url: "del.php",
+                data: "id="+document.getElementById("id").value,
+                success: function(msg) {
+                    Swal.fire({
+                        icon: "success",
+                        title: msg,
+                        showConfirmButton: false,
+                        timer:1000
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon:"error",
+                        title:"网络问题或不支持ajax",
+                        showConfirmButton: false,
+                        timer:1000
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            });
+        }
         function del()
         {
-            Swal.fire({
-                icon:"info",
+            mdui.dialog({
                 title:"删除教师",
-                text:"输入ID",
-                input:"text",
-                confirmButtonText:'删除教师',
-                showCancelButton:true,
-                cancelButtonText:'取消'
-            }).then((result)=>{
-                if(result.value)
-                {
-                    $.ajax({
-                    type: "POST",
-                    url: "del.php",
-                    data: "id="+result.value,
-                    success: function(msg) {
-                        Swal.fire({
-                            icon: "success",
-                            title: msg,
-                            showConfirmButton: false,
-                            timer:1000
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    },
-                    error: function() {
-                        Swal.fire({
-                            icon:"error",
-                            title:"网络问题或不支持ajax",
-                            showConfirmButton: false,
-                            timer:1000
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    }
-                });
-                }
+                content:"<div class=\"mdui-textfield mdui-textfield-floating-label\">\
+            <label class=\"mdui-textfield-label\">id</label>\
+            <input id=\"id\" class=\"mdui-textfield-input\"/>\
+            </div>",
+                buttons: [
+                    {text: '取消'},
+                    {text: '确认', onClick: function () {del2()}}
+                ]
             })
         }
         function 批量()
         {
-            Swal.fire({
-                showCancelButton:true,
-                showConfirmButton: false,
-                icon:"info",
+            mdui.dialog({
                 title:"批量添加",
-                html:"<div class=\"mdui-textfield mdui-textfield-floating-label\">\
+                content:"<div class=\"mdui-textfield mdui-textfield-floating-label\">\
                 <label class=\"mdui-textfield-label\">格式:每一行4个参数:科目+一个空格+ID+一个空格+姓名+一个空格+密码</label>\
-                <textarea class=\"mdui-textfield-input\" rows=\"10\" id=\"message\"></textarea>\
-                <button type=\"button\" class=\"swal2-confirm swal2-styled\" aria-label style=\"display: inline-block;\" onclick=\"piliangadd()\">批量添加</button>",
-                
-                cancelButtonText:'取消'
+                <textarea class=\"mdui-textfield-input\" rows=\"10\" id=\"message\"></textarea>",
+                buttons: [{text: '取消'}, {text: '确认', onClick: function () {piliangadd()}}]
             })
         }
         function piliangadd(){

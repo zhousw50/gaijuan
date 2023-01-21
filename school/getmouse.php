@@ -8,7 +8,7 @@
 <body>
     <input id="url"><button onclick="photo()">显示</button><br>
     <img id="img"><br>
-    <span style="background-color:#3c62ec;text-shadow:5px;border-radius:5px; width:60px;height:50px;#3c62ec;position:absolute;left:0px;top:0px;text-align:center" id="mouse" hidden="true"></div>
+    <span style="background-color:#3c62ec;text-shadow:4px;border-radius:5px; width:60px;height:50px;#3c62ec;position:absolute;left:0px;top:0px;text-align:center" id="mouse" hidden="true"></div>
 <script>
 function photo() {
     $("#img").attr("src", document.getElementById("url").value);

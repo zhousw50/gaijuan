@@ -62,7 +62,7 @@ include_once "../config.php";
         $p=$link->query("select * from students;");
         echo json_encode($p->fetchAll());
          ?>';
-    ctn.innerHTML+="<button class='mdui-btn mdui-btn-raised' onclick='rejudgeAll()'>全部重评</button>";
+    ctn.innerHTML+="<button class='mdui-btn mdui-btn-raised' onclick='rejudgeAll()'>全部重评</button><br><button class='mdui-btn mdui-btn-raised' onclick='rejudge()'>部分重评</button>";
     console.log(data);
     function rejudgeAll(){
         Swal.fire({
@@ -81,6 +81,38 @@ include_once "../config.php";
                     success:function (msg){
                         Swal.fire({
                             title:msg
+                        })
+                    }
+                })
+            }
+        })
+    }
+    function rejudge(){
+        Swal.fire({
+            icon:"info",
+            title:"请输入需重评此题的学生考号",
+            showConfirmButton:true,
+            showCancelButton:true,
+            confirmButtonText:"确定",
+            cancelButtonText:"取消",
+            html:"<div class=\"mdui-textfield mdui-textfield-floating-label\">" +
+                "   <label class=\"mdui-textfield-label\">请输入考号，一个隔一行</label>" +
+                "   <textarea class=\"mdui-textfield-input\" rows=\"10\" id=\"message\">" +
+                "</textarea>"
+        }).then((isConfirm)=>{
+            if(isConfirm){
+                $.ajax({
+                    type:"post",
+                    data:"exam=<?php echo $_GET["exam"]?>&subject=<?php echo $_GET["subject"]?>&timu=<?php echo $_GET["timu"]?>"+"&message="+
+                    //console.log(
+                        document.getElementById("message").value
+                    //)
+                ,
+                    url:"./rejudge.php",
+                    success:function (msg){
+                        Swal.fire({
+                            icon:!msg?"success":"error",
+                            title:!msg?"操作成功":"操作失败"
                         })
                     }
                 })

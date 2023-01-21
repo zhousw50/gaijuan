@@ -16,7 +16,7 @@ include_once "./config.php";
     <link rel="stylesheet" href=<?php echo $theme_css; ?>>
 </head>
 
-<body class="mdui-appbar-with-toolbar mdui-appbar-with-tab">
+<body class="mdui-appbar-with-toolbar mdui-appbar-with-tab mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
 <header></header>
     <script>
         header({color:"indigo",header_title:"登录页面",header_link:"./"});
