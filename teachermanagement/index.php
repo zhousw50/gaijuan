@@ -1,22 +1,52 @@
 <?php
 include_once "../config.php";
 ?>
+<!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>管理教师</title>
-    <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js" integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="../js/header.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 </head>
-
 <body class="mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
-<button class="mdui-btn mdui-btn-raised" onclick="add()"><i class="mdui-icon material-icons">&#xe145;</i>添加教师</button>
-<button class="mdui-btn mdui-btn-raised" onclick="批量()"><i class="mdui-icon material-icons">&#xe7f0;</i>批量添加</button>
-<button class="mdui-btn mdui-btn-raised" onclick="del()"><i class="mdui-icon material-icons">&#xe872;</i>删除教师</button>
+    <button class="mdui-btn mdui-btn-raised" id="add"><i class="mdui-icon material-icons">&#xe145;</i>添加教师</button>
+    <button class="mdui-btn mdui-btn-raised" id="piliang"><i class="mdui-icon material-icons">&#xe7f0;</i>批量添加</button>
+    <button class="mdui-btn mdui-btn-raised" id="del"><i class="mdui-icon material-icons">&#xe872;</i>删除教师</button>
+    <script>
+        $("#add").on("click",function (){
+            mdui.dialog({
+                title:"添加教师",
+                content:"<div class=\"mdui-textfield mdui-textfield-floating-label\"><label class=\"mdui-textfield-label\">科目</label><input id=\"subject\" class=\"mdui-textfield-input\"/></div><div class=\"mdui-textfield mdui-textfield-floating-label\"><label class=\"mdui-textfield-label\">ID</label><input id=\"id\" class=\"mdui-textfield-input\"/></div><div class=\"mdui-textfield mdui-textfield-floating-label\"><label class=\"mdui-textfield-label\">名称</label><input id=\"name\" class=\"mdui-textfield-input\"/></div><div class=\"mdui-textfield mdui-textfield-floating-label\"><label class=\"mdui-textfield-label\">密码</label><input id=\"pwd\" class=\"mdui-textfield-input\"/></div>",
+                buttons:[
+                    {text: '取消'},
+                    {
+                        text: '确认',
+                        onClick: function () {
+                            var a=$("#subject").val();
+                            var b=$("#id").val();
+                            var c=$("#name").val();
+                            var d=$("#pwd").val();
+                            if(a&&b&&c&&d) add();
+                        }
+                    }
+                ]
+            })
+        })
+        $("#piliang").on("click",function (){
+            mdui.prompt('格式:每一行4个参数:科目+一个空格+ID+一个空格+姓名+一个空格+密码','批量添加',function (val){
+                if(val) piliangadd(val)
+            },{type:"textarea",confirmText:"确认",cancelText:"取消"})
+        })
+        $("#del").on("click",function (){
+            mdui.prompt('id','删除教师',function (val){
+                if(val) del(val)
+            },{confirmText:"确认",cancelText:"取消"})
+        })
+    </script>
+</div>
 <h1 class="mdui-card-primary-title">教师列表</h1><div class="mdui-card-content">
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable mdui-table-col-numeric">
@@ -40,22 +70,10 @@ echo "\n";
 ?>
         </table>
     </div>
-    </div></div>
-<script>
-    header({
-        color:"indigo",
-        header_title:"管理教师",
-        header_link:"./",
-        tab:3,
-        tab_1_text: "添加教师",
-        tab_1_link: "javascript:add();",
-        tab_2_text: "批量添加",
-        tab_2_link: "javascript:批量();",
-        tab_3_text: "删除教师",
-        tab_3_link: "javascript:del();",
-        tab_1_img: "add",
-        tab_2_img:"group_add",
-        tab_3_img:"delete"
-    })
-</script>
-</body></html>
+    </div>
+</div>
+</div>
+<script src="index.js"></script>
+<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+</body>
+</html>

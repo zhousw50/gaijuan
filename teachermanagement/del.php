@@ -1,7 +1,7 @@
 <?php
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+include_once "../config.php";
 $id=$_POST["id"];
 $prepare=$link->prepare("delete from teachers where id=?;");
 $prepare->execute(array($id));
-echo "-->操作成功<--";
+echo "操作成功";
 ?>
