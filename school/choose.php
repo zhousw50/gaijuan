@@ -11,7 +11,7 @@ include_once "../config.php";
     <link rel="stylesheet" href=<?php echo $waves_css; ?>>
     <link rel="stylesheet" href=<?php echo $theme_css; ?>>
 </head>
-<body class="mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
+<body class="mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink mdui-color-grey-800">
 <h3>选择考试</h3>
 <?php
 foreach ($link->query("select id,name from exams order by id Desc;") as $item)

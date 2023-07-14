@@ -1,7 +1,7 @@
 <?php
 $id=$_POST["id"];
 $pwd=$_POST["pwd"];
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
+include_once "../config.php";
 $student=$link->query("select * from students;");
 $a=0;
 foreach ($student as $students){

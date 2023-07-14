@@ -1,6 +1,3 @@
-<?php
-$link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,32 +7,31 @@ $link=new PDO("mysql:host=localhost;dbname=zhousw","zhousw","qwerty");
         <script src="https://cdn.jsdelivr.net/npm/mdui" ></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
         <script src="https://unpkg.com/sweetalert2@11.4.19/dist/sweetalert2.all.js"></script>
-
+        <script src="/js/Loading.js"
         <script src="./header.js"></script>
     </head>
-    <body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab" style="text-align:center;">
+    <body style="text-align:center;">
+    <style>
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #424242;
+                color: white;
+            }
+        }
+    </style>
     <header></header>
         <script src="https://api.kinh.cc/Static/JavaScript/LoadIng.js"></script>
         <form enctype="multipart/form-data" style="display: none"><input id="file" name="file" type="file" /></form>
-    <div class="mdui-container mdui-p-t-3">
         <div class="mdui-col">
-            <div class="mdui-card">
-                <h1>上传一个zip压缩包,打包答题卡图片</h1><br>
+                <h1>1.上传一个zip压缩包,打包答题卡图片</h1><br>
                 <div id="upload" class="mdui-ripple">
-                    <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ab498c51-8871-421b-8e23-a43eaa306dff/93583d36-13e2-42f5-ab02-85effc5e6cb6.svg" width="30%"></img><br>
+                    <span class="mdui-icon material-icons" style="width: 100px">cloud_upload</span>
                     <h1>选择文件</h1>
                 </div>
                 <br>
-                <button id="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-btn-active">上传</button>
-            </div>
-        </div>
+                <button id="submit" class="mdui-btn mdui-ripple mdui-btn-block mdui-btn-raised mdui-color-pink">上传</button>
     </div>
         <script>
-            header({
-                color:"indigo",
-                header_title:"上传试卷",
-                header_link:""
-            });
         var formdata=new FormData();
         function upload()
             {

@@ -4,32 +4,46 @@ include_once "../config.php";
 <html>
 <head>
     <title>添加试卷-改卷系统(开发中)</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.8/dist/sweetalert2.all.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui/dist/css/mdui.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/mdui/dist/js/mdui.min.js"></script>
-    <script src="../js/header.js"></script>
-    <script src="../js/LoadIng.js"></script>
-    <style>
-        input{width:50px;}
-    </style>
+    <script src=<?php echo $jquery_js; ?>></script>
+    <link rel="stylesheet" href=<?php echo $mdui_css; ?>>
+    <script src=<?php echo $mdui_js; ?>></script>
+    <script src=<?php echo $swal2_js; ?>></script>
+    <script src=<?php echo $header_js; ?>></script>
+    <link rel="stylesheet" href=<?php echo $waves_css; ?>>
+    <link rel="stylesheet" href=<?php echo $theme_css; ?>>
+    <script src=<?php echo $loadIng_js; ?>></script>
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo mdui-appbar-with-toolbar mdui-appbar-with-tab">
-<header></header>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
+<style>
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #424242;
+        color:white;
+    }
+}
+</style>
+<iframe frameborder="0" width="100%" scrolling="0" id="frame"></iframe>
 <div style="text-align: center;">
     <div class="mdui-card-content">
+        <h1>2.上传答题卡配置文件</h1>
         <form enctype="multipart/form-data" style="display: none"><input id="file" name="file" type="file" /></form>
         <div id="upload" class="mdui-ripple">
-            <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ab498c51-8871-421b-8e23-a43eaa306dff/93583d36-13e2-42f5-ab02-85effc5e6cb6.svg" width="20%"></img><br>
-            <h1>点击/拖拽/粘贴上传答题卡配置文件</h1>
+            <span class="mdui-icon material-icons" style="width: 100px">cloud_upload</span>
+            <h1>选择文件</h1>
         </div>
         <button class="mdui-btn mdui-ripple mdui-btn-block mdui-btn-raised mdui-color-pink" id="submit">添加考试</button>
     </div>
 </div>
-
 <script>
-    var formdata=new FormData();
+    function frame(url){
+        document.getElementById("frame").src=url;
+    }
+    setInterval(function (){
+        document.getElementById("frame").height=window.innerHeight-200;
+    },100)
+    frame("upload.php");
+      var formdata=new FormData();
     function upload()
     {
         LoadIng(true,"正在处理数据,可能需要一段时间",350);
@@ -44,7 +58,7 @@ include_once "../config.php";
             success: function(msg) {
                 LoadIng(false);
                 Swal.fire({
-                    title: msg
+                    title: !msg?"操作成功":msg
                 });
             },
             error: function() {

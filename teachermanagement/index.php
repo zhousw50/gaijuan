@@ -7,11 +7,23 @@ include_once "../config.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>管理教师</title>
-    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src=<?php echo $jquery_js; ?>></script>
+    <link rel="stylesheet" href=<?php echo $mdui_css; ?>>
+    <script src=<?php echo $mdui_js; ?>></script>
+    <script src=<?php echo $swal2_js; ?>></script>
+    <script src=<?php echo $header_js; ?>></script>
+    <link rel="stylesheet" href=<?php echo $waves_css; ?>>
+    <link rel="stylesheet" href=<?php echo $theme_css; ?>>
+    <script src="index.js"></script>
 </head>
-<body class="mdui-theme-layout-auto mdui-theme-primary-indigo mdui-theme-accent-pink">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto">
+<style>
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: #424242;
+        }
+    }
+</style>
     <button class="mdui-btn mdui-btn-raised" id="add"><i class="mdui-icon material-icons">&#xe145;</i>添加教师</button>
     <button class="mdui-btn mdui-btn-raised" id="piliang"><i class="mdui-icon material-icons">&#xe7f0;</i>批量添加</button>
     <button class="mdui-btn mdui-btn-raised" id="del"><i class="mdui-icon material-icons">&#xe872;</i>删除教师</button>

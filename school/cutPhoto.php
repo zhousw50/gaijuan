@@ -1,5 +1,5 @@
 <?php
-$link=mysqli_connect("localhost","zhousw","qwerty","zhousw") or die("连接数据库失败");
+include_once "../config.php";
 $path=$_GET["photo"];
 $startx=$_GET["x1"];
 $starty=$_GET["y1"];
